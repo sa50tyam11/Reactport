@@ -4,40 +4,28 @@ import { Play, Hexagon, Code, Menu, X, ArrowRight, ExternalLink } from 'lucide-r
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
 function HeroSplineBackground() {
-    const [isMobile, setIsMobile] = React.useState(false);
-
-    React.useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
-
     return (
-        <div style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
-            {!isMobile ? (
-                <Suspense fallback={<div className="w-full h-full bg-black" />}>
-                    <Spline
-                        style={{ width: '100%', height: '100vh' }}
-                        scene="https://prod.spline.design/us3ALejTXl6usHZ7/scene.splinecode"
-                    />
-                </Suspense>
-            ) : (
-                /* Static High-Quality Mobile Background */
-                <div className="w-full h-full bg-[#050505] relative">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-black to-black" />
-                </div>
-            )}
+        <div style={{ position: 'relative', width: '100%', height: '100vh', pointerEvents: 'auto', overflow: 'hidden' }}>
+            <Suspense fallback={<div className="w-full h-full bg-black" />}>
+                <Spline
+                    style={{ width: '100%', height: '100vh', pointerEvents: 'auto' }}
+                    scene="https://prod.spline.design/us3ALejTXl6usHZ7/scene.splinecode"
+                />
+            </Suspense>
             <div
                 style={{
                     position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh',
-                    background: `linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.9))`,
+                    background: `
+            linear-gradient(to right, rgba(0, 0, 0, 0.8), transparent 30%, transparent 70%, rgba(0, 0, 0, 0.8)),
+            linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.9))
+          `,
                     pointerEvents: 'none',
                 }}
             />
         </div>
     );
 }
+
 function HeroContent() {
     return (
         <div className="text-left text-white pt-16 sm:pt-24 md:pt-32 px-4 max-w-4xl">
