@@ -5,7 +5,6 @@ import { SpiralAnimation } from "./ui/spiral-animation"
 
 export function AboutUs() {
     const [isVisible, setIsVisible] = useState(false)
-    const [isMobile, setIsMobile] = useState(false) // State to track mobile view
     const sectionRef = useRef(null)
     const statsRef = useRef(null)
     const isInView = useInView(sectionRef, { once: false, amount: 0.1 })
@@ -17,17 +16,7 @@ export function AboutUs() {
     const rotate1 = useTransform(scrollYProgress, [0, 1], [0, 20])
     const rotate2 = useTransform(scrollYProgress, [0, 1], [0, -20])
 
-    useEffect(() => {
-        setIsVisible(true)
-
-        // Check screen size on mount and window resize
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 1024)
-        }
-        checkMobile()
-        window.addEventListener('resize', checkMobile)
-        return () => window.removeEventListener('resize', checkMobile)
-    }, [])
+    useEffect(() => setIsVisible(true), [])
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -38,17 +27,18 @@ export function AboutUs() {
         visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } },
     }
 
+    // UPDATED SKILLS CARDS: Now including Python, C, SQL, and DBMS
     const skills = [
         {
             icon: <Layout className="w-6 h-6" />,
             title: "Full Stack Engineering",
-            description: "Architecting scalable web applications from responsive React frontends to robust Node.js and database backends.",
+            description: "Architecting scalable web applications using React.js and Node.js, backed by robust data models using SQL and modern DBMS.",
             position: "left",
         },
         {
             icon: <Cpu className="w-6 h-6" />,
-            title: "Systems & Vision",
-            description: "Pushing boundaries beyond the browser by exploring computer vision and low-level systems programming with C++ and OpenCV.",
+            title: "Systems, ML & Vision",
+            description: "Pushing boundaries beyond the browser by writing low-level systems in C/C++ and building computer vision pipelines with Python and OpenCV.",
             position: "left",
         },
         {
@@ -65,9 +55,10 @@ export function AboutUs() {
         },
     ]
 
+    // UPDATED MARQUEE: Added new tech stack languages
     const techStack = [
-        "HTML5", "CSS3", "JavaScript", "React.js", "Tailwind CSS",
-        "Node.js", "Databases", "C++", "OpenCV", "Git", "Vercel", "Figma"
+        "JavaScript", "React.js", "Node.js", "Python", "C++",
+        "C", "SQL", "DBMS", "Tailwind CSS", "OpenCV", "Git", "Figma"
     ]
     const loopingSkills = [...techStack, ...techStack, ...techStack]
 
@@ -80,8 +71,7 @@ export function AboutUs() {
     return (
         <section id="about" ref={sectionRef} className="w-full py-24 px-4 bg-gradient-to-b from-black to-[#0a0a0a] text-white overflow-hidden relative">
 
-            {/* Conditionally render SpiralAnimation only if NOT on mobile */}
-            {!isMobile && <SpiralAnimation />}
+            <SpiralAnimation />
 
             <motion.div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-purple-600/10 blur-3xl z-0 pointer-events-none" style={{ y: y1, rotate: rotate1 }} />
             <motion.div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-blue-600/10 blur-3xl z-0 pointer-events-none" style={{ y: y2, rotate: rotate2 }} />
@@ -97,6 +87,7 @@ export function AboutUs() {
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto mb-16 text-left">
+
                     <motion.div className="space-y-6" variants={itemVariants}>
                         <h3 className="text-2xl font-bold text-white border-b border-gray-800 pb-3 flex items-center gap-2">
                             The Origin
@@ -120,7 +111,7 @@ export function AboutUs() {
                             </li>
                             <li className="flex gap-4 items-start group">
                                 <ArrowRight className="w-5 h-5 text-purple-500 shrink-0 mt-0.5 transition-transform group-hover:translate-x-1" />
-                                <span className="leading-relaxed">Expanded engineering depth by diving into C++ and OpenCV for real-time Computer Vision applications.</span>
+                                <span className="leading-relaxed">Expanded engineering depth by diving into C/C++ and Python for systems programming and Computer Vision.</span>
                             </li>
                             <li className="flex gap-4 items-start group">
                                 <ArrowRight className="w-5 h-5 text-purple-500 shrink-0 mt-0.5 transition-transform group-hover:translate-x-1" />
