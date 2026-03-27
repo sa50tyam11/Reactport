@@ -142,27 +142,37 @@ function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50" style={{ backgroundColor: 'rgba(13, 13, 24, 0.3)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-      <div className="container mx-auto px-4 py-4 md:px-6 lg:px-8 flex items-center justify-between">
-        <div className="flex items-center space-x-2 text-white font-bold text-2xl tracking-widest">
-          <span>S.K.J</span>
+      <div className="container mx-auto px-4 py-4 md:px-6 lg:px-8 flex items-center justify-between relative">
+        
+        {/* Logo */}
+        <div className="flex items-center space-x-2 text-white font-bold text-2xl tracking-widest z-10">
+          <a href="#"><span>S.K.J</span></a>
         </div>
-        <div className="hidden lg:flex items-center space-x-8">
-          <a href="#about" className="text-sm font-medium text-gray-300 hover:text-white transition">About</a>
-          <a href="#projects" className="text-sm font-medium text-gray-300 hover:text-white transition">Work</a>
-          <a href="#education" className="text-sm font-medium text-gray-300 hover:text-white transition">Education</a>
+        
+        {/* Perfectly Centered Desktop Links */}
+        <div className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+          <a href="#about" className="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors duration-300">About</a>
+          <a href="#projects" className="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors duration-300">Work</a>
+          <a href="#contact" className="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors duration-300">Contact</a>
         </div>
-        <div className="flex items-center space-x-4 md:space-x-6">
-          <a href="#contact" className="hidden sm:block text-white border border-gray-600 hover:border-white px-4 py-2 rounded-full text-sm font-medium transition">Contact Me</a>
-          <button className="lg:hidden text-white p-2" onClick={toggleMobileMenu}>
+
+        {/* Right Side CTA & Mobile Toggle */}
+        <div className="flex items-center space-x-4 md:space-x-6 z-10">
+          <a href="#contact" className="hidden sm:block text-white border border-gray-600 hover:border-purple-500 hover:bg-purple-500/10 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300">
+            Let's Talk
+          </a>
+          <button className="md:hidden text-white p-2" onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
-      <div className={`lg:hidden bg-black/95 border-t border-gray-800 absolute top-full left-0 right-0 z-50 overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-screen py-4 opacity-100 pointer-events-auto' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+
+      {/* Mobile Dropdown Menu */}
+      <div className={`md:hidden bg-black/95 border-t border-gray-800 absolute top-full left-0 right-0 z-50 overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-screen py-4 opacity-100 pointer-events-auto' : 'max-h-0 opacity-0 pointer-events-none'}`}>
         <div className="px-6 flex flex-col space-y-6 text-lg">
-          <a href="#about" className="text-gray-300 hover:text-white" onClick={toggleMobileMenu}>About</a>
-          <a href="#projects" className="text-gray-300 hover:text-white" onClick={toggleMobileMenu}>Work</a>
-          <a href="#contact" className="text-purple-400 font-bold" onClick={toggleMobileMenu}>Contact Me</a>
+          <a href="#about" className="text-gray-300 hover:text-white transition-colors" onClick={toggleMobileMenu}>About</a>
+          <a href="#projects" className="text-gray-300 hover:text-white transition-colors" onClick={toggleMobileMenu}>Work</a>
+          <a href="#contact" className="text-purple-400 font-bold transition-colors" onClick={toggleMobileMenu}>Let's Talk</a>
         </div>
       </div>
     </nav>

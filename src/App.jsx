@@ -1,6 +1,6 @@
 import { GalaxyHero } from "./components/GalaxyHero"
 import { AboutUs } from "./components/AboutUs"
-import { ProjectsGallery } from "./components/ProjectsGallery"
+import { ProjectShowcase } from "./components/ProjectShowcase"
 import { ContactSection } from "./components/Contact"
 import { Footer } from "./components/Footer"
 
@@ -9,7 +9,7 @@ function App() {
     <main className="bg-black relative min-h-screen w-full overflow-x-hidden text-white font-sans">
       <GalaxyHero />
       <AboutUs /> 
-      <ProjectsGallery />
+      <ProjectShowcase />
       <ContactSection />
       <Footer />
     </main>
