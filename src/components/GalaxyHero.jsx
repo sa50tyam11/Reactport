@@ -106,28 +106,33 @@ function HeroSplineBackground() {
 function HeroContent() {
     return (
         <div className="text-left text-white pt-16 sm:pt-24 md:pt-32 px-4 max-w-4xl relative z-10">
-            <div className="inline-block border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs font-semibold px-3 py-1 rounded-full mb-6 backdrop-blur-md">
+            
+            <div className="inline-block border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 backdrop-blur-md">
                 <span className="inline-block w-2 h-2 rounded-full bg-purple-400 mr-2 animate-pulse"></span>
-                Available for Internship & Full-time
+                Open to Full-Time Roles & Client Projects
             </div>
-            <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold mb-4 leading-tight tracking-wide">
+
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight tracking-wide">
                 SATYAM<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">KUMAR JHA</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 opacity-80 max-w-2xl">
-                Full Stack Developer crafting fast, scalable, and pixel-perfect web experiences. Turning complex problems into powerful digital solutions.
+
+            
+            <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 opacity-80 max-w-2xl leading-relaxed">
+                Full Stack Software Engineer specializing in high-performance web architecture. I build scalable, conversion-focused applications that bridge the gap between complex business logic and seamless user experiences.
             </p>
 
-            <div className="flex pointer-events-auto flex-wrap gap-3 items-start">
-                <a href="#projects" className="bg-[#8200DB29] hover:bg-black/50 text-white font-semibold py-3 px-6 rounded-full transition duration-300 border border-[#322D36] flex items-center justify-center w-full sm:w-auto" style={{ backdropFilter: 'blur(8px)' }}>
-                    View My Work <ArrowRight className="w-4 h-4 ml-2" />
+            
+            <div className="flex pointer-events-auto flex-wrap gap-4 items-start">
+                <a href="#projects" className="bg-[#8200DB29] hover:bg-black/50 text-white font-semibold py-3 px-8 rounded-full transition duration-300 border border-[#322D36] flex items-center justify-center w-full sm:w-auto" style={{ backdropFilter: 'blur(8px)' }}>
+                    Explore My Work <ArrowRight className="w-4 h-4 ml-2" />
                 </a>
 
-                <a href="https://senowebstudio.netlify.app/" target="_blank" rel="noreferrer" className="bg-purple-600 hover:bg-purple-500 text-white font-semibold py-3 px-6 rounded-full transition duration-300 flex items-center justify-center w-full sm:w-auto shadow-[0_0_15px_rgba(147,51,234,0.3)]">
-                    My Freelance Studio <ExternalLink className="w-4 h-4 ml-2" />
+                <a href="https://senowebstudio.netlify.app/" target="_blank" rel="noreferrer" className="bg-purple-600 hover:bg-purple-500 text-white font-semibold py-3 px-8 rounded-full transition duration-300 flex items-center justify-center w-full sm:w-auto shadow-[0_0_15px_rgba(147,51,234,0.3)]">
+                    SENO Web Studio <ExternalLink className="w-4 h-4 ml-2" />
                 </a>
 
-                <a href="https://github.com/sa50tyam11" target="_blank" rel="noreferrer" className="bg-[#0009] border border-gray-600 hover:border-gray-400 text-gray-200 hover:text-white font-medium py-3 px-6 rounded-full transition duration-300 flex items-center justify-center w-full sm:w-auto">
+                <a href="https://github.com/sa50tyam11" target="_blank" rel="noreferrer" className="bg-[#0009] border border-gray-600 hover:border-gray-400 text-gray-200 hover:text-white font-medium py-3 px-8 rounded-full transition duration-300 flex items-center justify-center w-full sm:w-auto">
                     <Code className="w-4 h-4 mr-2" />
                     GitHub
                 </a>

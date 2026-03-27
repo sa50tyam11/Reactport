@@ -1,87 +1,125 @@
-import React from 'react';
-import { cn } from '@/lib/utils';
-import { Plus, Mail, MapPin } from 'lucide-react';
-import { Input } from './ui/input';
-import { Button } from './ui/button';
-import { Label } from './ui/label';
-import { Textarea } from './ui/textarea';
-
-function ContactInfo({ icon: Icon, label, value, className, ...props }) {
-  return (
-    <div className={cn('flex items-center gap-3 py-3', className)} {...props}>
-      <div className="bg-purple-500/10 rounded-lg p-3">
-        <Icon className="h-5 w-5 text-purple-400" />
-      </div>
-      <div>
-        <p className="font-medium text-white">{label}</p>
-        <p className="text-gray-400 text-xs">{value}</p>
-      </div>
-    </div>
-  );
-}
-
-function ContactCard({ title, description, contactInfo, className, formSectionClassName, children, ...props }) {
-  return (
-    <div className={cn('bg-[#0a0a0a] border border-gray-800 relative grid h-full w-full shadow-2xl md:grid-cols-2 lg:grid-cols-3', className)} {...props}>
-      <Plus className="absolute -top-3 -left-3 h-6 w-6 text-gray-600" />
-      <Plus className="absolute -top-3 -right-3 h-6 w-6 text-gray-600" />
-      <Plus className="absolute -bottom-3 -left-3 h-6 w-6 text-gray-600" />
-      <Plus className="absolute -right-3 -bottom-3 h-6 w-6 text-gray-600" />
-      
-      <div className="flex flex-col justify-between lg:col-span-2">
-        <div className="relative h-full space-y-6 px-6 py-12 md:p-12">
-          <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl text-white">
-            {title}
-          </h2>
-          <p className="text-gray-400 max-w-xl text-sm md:text-base lg:text-lg">
-            {description}
-          </p>
-          <div className="grid gap-6 md:grid md:grid-cols-2 pt-6">
-            {contactInfo?.map((info, index) => (
-              <ContactInfo key={index} {...info} />
-            ))}
-          </div>
-        </div>
-      </div>
-      
-      <div className={cn('bg-[#111] flex h-full w-full items-center border-t border-gray-800 p-8 md:col-span-1 md:border-t-0 md:border-l', formSectionClassName)}>
-        {children}
-      </div>
-    </div>
-  );
-}
+import React, { useRef, useState } from "react"
+import { Label } from "./ui/label"
+import { Input } from "./ui/input"
+import { Textarea } from "./ui/textarea"
+import { Button } from "./ui/button"
+import emailjs from '@emailjs/browser'
 
 export function ContactSection() {
+  const form = useRef()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null)
+
+  const sendEmail = (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+
+    // REPLACE THESE WITH YOUR ACTUAL IDS FROM EMAILJS
+    emailjs.sendForm(
+      'service_dkjtpaf', 
+      'template_x8xbxwq', 
+      form.current, 
+      'LbR8q-iqH8hGty18c'
+    )
+      .then((result) => {
+          console.log(result.text)
+          setIsSubmitting(false)
+          setSubmitStatus('success')
+          e.target.reset() 
+          
+          setTimeout(() => setSubmitStatus(null), 5000)
+      }, (error) => {
+          console.log(error.text)
+          setIsSubmitting(false)
+          setSubmitStatus('error')
+      })
+  }
+
   return (
-    <section id="contact" className="relative flex w-full items-center justify-center p-4 py-24 bg-black">
-      <div className="mx-auto max-w-6xl w-full">
-        <ContactCard
-          title="Let's build something."
-          description="Open to frontend development internships, collaborative projects, and freelance opportunities. Drop a message and I'll get back to you."
-          contactInfo={[
-            { icon: Mail, label: 'Email', value: 'satyamkrjha5011@gmail.com' },
-            { icon: MapPin, label: 'Location', value: 'Muzaffarpur, Bihar, India' }
-          ]}
-        >
-          <form className="w-full space-y-6">
-            <div className="flex flex-col gap-2">
-              <Label>Name</Label>
-              <Input type="text" placeholder="Your Name" />
+    <section id="contact" className="w-full py-24 px-4 bg-[#050505] border-t border-gray-900 text-white relative">
+      <div className="container mx-auto max-w-5xl">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          
+          {/* Left Side: Professional Text */}
+          <div className="space-y-8">
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight">Let's build something.</h2>
+            <p className="text-gray-400 text-lg max-w-md leading-relaxed">
+              Open to full-time software engineering roles, collaborative projects, and freelance client work. Drop a message and I'll get back to you.
+            </p>
+            
+            <div className="space-y-6 pt-8">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center border border-purple-500/20">
+                  <span className="text-purple-400 text-xl">✉</span>
+                </div>
+                <div>
+                  <h4 className="font-medium text-white">Email</h4>
+                  <p className="text-gray-400 text-sm">satyamkrjha5011@gmail.com</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center border border-purple-500/20">
+                  <span className="text-purple-400 text-xl">📍</span>
+                </div>
+                <div>
+                  <h4 className="font-medium text-white">Location</h4>
+                  <p className="text-gray-400 text-sm">Muzaffarpur, Bihar, India</p>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col gap-2">
-              <Label>Email</Label>
-              <Input type="email" placeholder="you@example.com" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <Label>Message</Label>
-              <Textarea placeholder="How can I help you?" />
-            </div>
-            <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white border-0" type="button">
-              Send Message
-            </Button>
-          </form>
-        </ContactCard>
+          </div>
+
+          {/* Right Side: EmailJS Form */}
+          <div className="bg-[#0a0a0a] border border-gray-800 p-8 rounded-2xl shadow-2xl relative">
+            {/* Corner Crosshairs (matching your design) */}
+            <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 text-gray-700">+</div>
+            <div className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-gray-700">+</div>
+            <div className="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 text-gray-700">+</div>
+            <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 text-gray-700">+</div>
+
+            <form ref={form} onSubmit={sendEmail} className="space-y-6">
+              
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="from_name" className="text-gray-300">Name</Label>
+                {/* Changed name attribute to match {{from_name}} */}
+                <Input type="text" id="from_name" name="from_name" placeholder="John Doe" className="bg-black border-gray-800 focus-visible:ring-purple-500" required />
+              </div>
+              
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="from_email" className="text-gray-300">Email</Label>
+                {/* Changed name attribute to match {{from_email}} */}
+                <Input type="email" id="from_email" name="from_email" placeholder="john@example.com" className="bg-black border-gray-800 focus-visible:ring-purple-500" required />
+              </div>
+              
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="message" className="text-gray-300">Message</Label>
+                {/* Name attribute matches {{message}} */}
+                <Textarea id="message" name="message" placeholder="How can I help you?" rows={5} className="bg-black border-gray-800 focus-visible:ring-purple-500 resize-none" required />
+              </div>
+              
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-6 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Sending Message...' : 'Send Message'}
+              </Button>
+
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <p className="text-green-400 text-sm text-center mt-4 font-medium">Message sent successfully! I'll be in touch soon.</p>
+              )}
+              {submitStatus === 'error' && (
+                <p className="text-red-400 text-sm text-center mt-4 font-medium">Oops! Something went wrong. Please check your console.</p>
+              )}
+
+            </form>
+          </div>
+
+        </div>
       </div>
     </section>
-  );
+  )
 }
