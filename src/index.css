@@ -2,8 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-gray-950 text-white font-sans;
+@layer base {
+  /* Headings get the engineered 'Space Grotesk' look */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+  }
+  /* Body text gets the ultra-clean 'Plus Jakarta Sans' */
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    @apply bg-black text-white;
+  }
 }
 
 /* Hide the Spline watermark */

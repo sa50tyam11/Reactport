@@ -106,7 +106,7 @@ function HeroSplineBackground() {
 function HeroContent() {
     return (
         <div className="text-left text-white pt-16 sm:pt-24 md:pt-32 px-4 max-w-4xl relative z-10">
-            
+
             <div className="inline-block border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 backdrop-blur-md">
                 <span className="inline-block w-2 h-2 rounded-full bg-purple-400 mr-2 animate-pulse"></span>
                 Open to Full-Time Roles & Client Projects
@@ -117,25 +117,39 @@ function HeroContent() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">KUMAR JHA</span>
             </h1>
 
-            
+
             <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 opacity-80 max-w-2xl leading-relaxed">
                 Full Stack Software Engineer specializing in high-performance web architecture. I build scalable, conversion-focused applications that bridge the gap between complex business logic and seamless user experiences.
             </p>
 
-            
-            <div className="flex pointer-events-auto flex-wrap gap-4 items-start">
-                <a href="#projects" className="bg-[#8200DB29] hover:bg-black/50 text-white font-semibold py-3 px-8 rounded-full transition duration-300 border border-[#322D36] flex items-center justify-center w-full sm:w-auto" style={{ backdropFilter: 'blur(8px)' }}>
-                    Explore My Work <ArrowRight className="w-4 h-4 ml-2" />
+
+            {/* --- NEXT LEVEL ANIMATED BUTTONS --- */}
+            <div className="flex pointer-events-auto flex-wrap gap-5 items-start mt-4">
+
+                {/* 1. Animated Spinning Border Button (Primary Glow) */}
+                <a href="https://senowebstudio.netlify.app/" target="_blank" rel="noreferrer" className="relative inline-flex h-14 overflow-hidden rounded-full p-[1px] group w-full sm:w-auto shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-[0_0_40px_rgba(147,51,234,0.6)] transition-shadow duration-300">
+                    <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#9333ea_0%,#3b82f6_50%,#9333ea_100%)]" />
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-black px-8 text-sm font-semibold text-white backdrop-blur-3xl transition-all duration-300 group-hover:bg-black/80">
+                        SENO Web Studio <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </span>
                 </a>
 
-                <a href="https://senowebstudio.netlify.app/" target="_blank" rel="noreferrer" className="bg-purple-600 hover:bg-purple-500 text-white font-semibold py-3 px-8 rounded-full transition duration-300 flex items-center justify-center w-full sm:w-auto shadow-[0_0_15px_rgba(147,51,234,0.3)]">
-                    SENO Web Studio <ExternalLink className="w-4 h-4 ml-2" />
+                {/* 2. Swipe-Up Hover Effect Button (Secondary) */}
+                <a href="#projects" className="group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/5 px-8 font-medium text-white backdrop-blur-lg transition-all hover:bg-white/10 hover:border-white/20 w-full sm:w-auto">
+                    <span className="translate-y-0 opacity-100 transition-all duration-300 group-hover:-translate-y-8 group-hover:opacity-0">
+                        Explore My Work
+                    </span>
+                    <span className="absolute translate-y-8 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 flex items-center">
+                        Explore My Work <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </span>
                 </a>
 
-                <a href="https://github.com/sa50tyam11" target="_blank" rel="noreferrer" className="bg-[#0009] border border-gray-600 hover:border-gray-400 text-gray-200 hover:text-white font-medium py-3 px-8 rounded-full transition duration-300 flex items-center justify-center w-full sm:w-auto">
-                    <Code className="w-4 h-4 mr-2" />
+                {/* 3. Minimalist Tech Button */}
+                <a href="https://github.com/sa50tyam11" target="_blank" rel="noreferrer" className="group flex h-14 items-center justify-center rounded-full border border-gray-700 bg-transparent px-8 font-medium text-gray-300 transition-all hover:border-gray-400 hover:text-white w-full sm:w-auto hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                    <Code className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
                     GitHub
                 </a>
+
             </div>
         </div>
     );
