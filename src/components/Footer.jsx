@@ -51,7 +51,7 @@ export function Footer() {
             <span>S.K.J</span>
           </div>
           <p className="text-gray-400 text-sm max-w-sm leading-relaxed">
-            Frontend Developer crafting fast, pixel-perfect web experiences. Based in Bihar, open to the world.
+            Full Stack Developer crafting fast, pixel-perfect web experiences. Based in Bihar, open to the world.
           </p>
           <p className="text-gray-600 text-sm pt-6">
             © {new Date().getFullYear()} Satyam Kumar Jha.
