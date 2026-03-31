@@ -127,7 +127,7 @@ function HeroContent() {
             <div className="flex pointer-events-auto flex-wrap gap-5 items-start mt-4">
 
                 {/* 1. Animated Spinning Border Button (Primary Glow) */}
-                <a href="https://senowebstudio.netlify.app/" target="_blank" rel="noreferrer" className="relative inline-flex h-14 overflow-hidden rounded-full p-[1px] group w-full sm:w-auto shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-[0_0_40px_rgba(147,51,234,0.6)] transition-shadow duration-300">
+                <a href="https://senostudio.netlify.app/" target="_blank" rel="noreferrer" className="relative inline-flex h-14 overflow-hidden rounded-full p-[1px] group w-full sm:w-auto shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-[0_0_40px_rgba(147,51,234,0.6)] transition-shadow duration-300">
                     <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#9333ea_0%,#3b82f6_50%,#9333ea_100%)]" />
                     <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-black px-8 text-sm font-semibold text-white backdrop-blur-3xl transition-all duration-300 group-hover:bg-black/80">
                         SENO Web Studio <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
